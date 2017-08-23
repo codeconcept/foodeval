@@ -4,6 +4,8 @@ import { BarcodeScanner, BarcodeScannerOptions, BarcodeScanResult } from '@ionic
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
+import { AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database';
+import { ToolsProvider } from '../../providers/tools/tools';
 
 @Component({
   selector: 'page-home',
@@ -16,8 +18,14 @@ export class HomePage {
   api_response;
   api_response_raw;
 
-  constructor(public navCtrl: NavController, private bcs: BarcodeScanner, private http: Http) {
+  flo: FirebaseListObservable<any[]>;
 
+  constructor(public navCtrl: NavController, private bcs: BarcodeScanner, private http: Http, private afd: AngularFireDatabase, private tools: ToolsProvider) {
+    this.tools.displayInfo('dans ctor');
+    this.flo = this.afd.list('/food-articles');
+  }
+
+  ionViewDidLoad() {
   }
 
   async scanBarcode() {
@@ -49,6 +57,14 @@ export class HomePage {
   handleGetError(error) {
     console.log(error);
     console.error(error.message);
+  }
+
+  addToFavoriteFood(foodItem) {
+    const item = {
+      id: foodItem._id,
+      name:  foodItem.product_name_fr
+    };
+    this.flo.push(item);
   }
 
 }

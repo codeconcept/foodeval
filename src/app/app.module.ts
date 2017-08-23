@@ -10,6 +10,10 @@ import { ListPage } from '../pages/list/list';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { ToolsProvider } from '../providers/tools/tools';
+import { CREDENTIALS} from './firebase.config';
 
 @NgModule({
   declarations: [
@@ -20,7 +24,10 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    HttpModule
+    AngularFireModule.initializeApp(CREDENTIALS),
+    HttpModule,
+    AngularFireModule,
+    AngularFireDatabaseModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -32,7 +39,8 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner';
     StatusBar,
     SplashScreen,
     BarcodeScanner,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    ToolsProvider
   ]
 })
 export class AppModule {}

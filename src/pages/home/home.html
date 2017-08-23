@@ -28,6 +28,7 @@
   <ion-card *ngIf="api_response_raw">
         <img src="{{api_response.product.image_url}}" alt="{{api_response['product']['ingredients_text']}}">
         <p>{{api_response['product']['ingredients_text_with_allergens_fr']}}</p>
+        <button ion-button block (click)="addToFavoriteFood(api_response.product)">ajouter à mes favoris</button>
         <p>{{api_response_raw | json}}</p>
   </ion-card>
 
