@@ -1,0 +1,16 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Détails</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding *ngIf="retrievedArticle">
+  détails de {{retrievedArticle.name}}
+
+  <img src="{{retrievedArticle.imageUrl}}" alt="{{retrievedArticle.name}}">
+  <div [innerHTML]="retrievedArticle.ingredients"></div>
+
+</ion-content>

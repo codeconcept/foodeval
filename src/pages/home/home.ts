@@ -25,9 +25,6 @@ export class HomePage {
     this.flo = this.afd.list('/food-articles');
   }
 
-  ionViewDidLoad() {
-  }
-
   async scanBarcode() {
     try{
       const options: BarcodeScannerOptions = {
@@ -62,7 +59,9 @@ export class HomePage {
   addToFavoriteFood(foodItem) {
     const item = {
       id: foodItem._id,
-      name:  foodItem.product_name_fr
+      name:  foodItem.product_name_fr,
+      imageUrl: foodItem.image_url,
+      ingredients: foodItem.ingredients_text_with_allergens
     };
     this.flo.push(item);
   }

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database';
+import { DetailsPage } from '../details/details';
 
 @Component({
   selector: 'page-list',
@@ -17,6 +18,7 @@ export class ListPage {
   }
 
   showDetails(item) {
-    // this.navCtrl.push(DetailsPage, { 'itemId': item._id});
+    console.log(item);
+    this.navCtrl.push(DetailsPage, { 'key': item.$key,  'articleId': item.id});
   }
 }

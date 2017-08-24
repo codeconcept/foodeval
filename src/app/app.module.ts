@@ -14,12 +14,14 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { ToolsProvider } from '../providers/tools/tools';
 import { CREDENTIALS} from './firebase.config';
+import { DetailsPage } from '../pages/details/details';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    ListPage
+    ListPage,
+    DetailsPage
   ],
   imports: [
     BrowserModule,
@@ -33,7 +35,8 @@ import { CREDENTIALS} from './firebase.config';
   entryComponents: [
     MyApp,
     HomePage,
-    ListPage
+    ListPage,
+    DetailsPage
   ],
   providers: [
     StatusBar,
